@@ -155,7 +155,12 @@ CodeRankers/
 - Publish to App Store/Google Play
 - Or use Expo's OTA updates
 
-
+## Contributing
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Test thoroughly
+5. Submit a pull request
 
 ## License
 MIT License - see LICENSE file for details
