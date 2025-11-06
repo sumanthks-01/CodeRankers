@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Meal Report | Karmic Canteen</title>
+  {% load static %}
+    <link rel="stylesheet" href="{% static 'canteen/css/manage.css' %}">
+</head>
+<body>
+  <h2>Karmic Solutions - Daily Meal Report ({{ today }})</h2>
+
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>Meal Item</th>
+      <th>Meal Type</th>
+      <th>Opted Count</th>
+      <th>Action</th>
+    </tr>
+
+    {% for item in report_data %}
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{{ item.get_meal_type_display }}</td>
+      <td>{{ item.total_opted }}</td>
+      <td>
+        {% if item.total_opted > 0 %}
+          <a href="{% url 'view_opted_users' item.id %}">View</a>
+        {% else %}
+          <span style="color:gray;">No Opt-ins</span>
+        {% endif %}
+      </td>
+    </tr>
+    {% empty %}
+    <tr><td colspan="4">No menu data found for today.</td></tr>
+    {% endfor %}
+  </table>
+
+  <br>
+  <a href="{% url 'admin_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

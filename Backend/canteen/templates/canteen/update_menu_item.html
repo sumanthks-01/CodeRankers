@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login | Karmic Canteen</title>
+  {% load static %}
+   <link rel="stylesheet" href="{% static 'canteen/css/add.css' %}">
+</head>
+<body>
+<h2>{% if form.instance.pk %}Update{% else %}Add{% endif %} Menu Item</h2>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+</form>
+<a href="{% url 'manage_menu' %}">Back to Menu</a>
+</body>
+</html>

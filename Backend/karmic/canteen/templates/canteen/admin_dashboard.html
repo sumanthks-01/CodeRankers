@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard | Karmic Canteen</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'canteen/css/admin.css' %}">
+</head>
+<body>
+    {% comment %} <h2>Welcome, {{ user.username }}!</h2>
+<h3>Admin Dashboard</h3>
+
+<ul>
+    <li><a href="{% url 'manage_menu' %}">Manage Menu</a></li>
+    <li><a href="{% url 'generate_report' %}">Generate Report</a></li>
+    <li><a href="{% url 'logout_view' %}">Logout</a></li>
+
+    
+</ul> {% endcomment %}
+
+
+    <h2>Welcome, {{ user.username }}!</h2>
+    <h3>Admin Dashboard</h3>
+
+    <ul>
+    <li><a href="{% url 'manage_menu' %}">Manage Menu</a></li>
+    <li><a href="{% url 'generate_report' %}">Generate Report</a></li>
+
+    {% if user.is_superuser %}
+        <li><a href="{% url 'user_list' %}">Manage Users</a></li>
+        <li><a href="{% url 'menu_list_all' %}">View All Food Items</a></li>
+    {% endif %}
+
+    <li><a href="{% url 'logout_view' %}">Logout</a></li>
+</ul>
+
+
+
+</body>
+</html>

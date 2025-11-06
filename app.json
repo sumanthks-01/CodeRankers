@@ -1,0 +1,51 @@
+{
+  "expo": {
+    "name": "Karmic Canteen",
+    "slug": "karmic-canteen-app",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/favicon.png",
+    "userInterfaceStyle": "light",
+    "sdkVersion": "49.0.0",
+    "platforms": ["ios", "android"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "com.coderankers.karmiccanteen",
+      "versionCode": 1,
+      "icon": "./assets/favicon.png",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/favicon.png",
+        "backgroundColor": "#667eea"
+      },
+      "permissions": [
+        "android.permission.INTERNET",
+        "android.permission.ACCESS_NETWORK_STATE",
+        "android.permission.RECEIVE_BOOT_COMPLETED",
+        "android.permission.VIBRATE",
+        "android.permission.WAKE_LOCK",
+        "android.permission.POST_NOTIFICATIONS"
+      ],
+      "useNextNotificationsApi": true
+    },
+    "web": {
+      "bundler": "webpack"
+    },
+    "plugins": [],
+    "notification": {
+      "icon": "./assets/favicon.png",
+      "color": "#667eea",
+      "androidMode": "default",
+      "androidCollapsedTitle": "Karmic Canteen"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b738a47d-c8d3-4f29-b714-97aef5b81e73"
+      }
+    }
+  }
+}

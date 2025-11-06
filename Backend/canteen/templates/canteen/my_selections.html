@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard | Karmic Canteen</title>
+{% load static %}
+    <link rel="stylesheet" href="{% static 'canteen/css/employe.css' %}">
+</head>
+<body>
+<h2>My Selections</h2>
+
+<table border="1">
+  <tr>
+    <th>Date</th>
+    <th>Meal Item</th>
+    <th>Meal Type</th>
+    <th>Status</th>
+  </tr>
+
+  {% for sel in selections %}
+  <tr>
+    <td>{{ sel.date }}</td>
+    <td>{{ sel.menu_item.name }}</td>
+    <td>{{ sel.menu_item.get_meal_type_display }}</td>
+    <td>{{ sel.opted|yesno:"Opted In,Opted Out" }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="4">No selections yet.</td></tr>
+  {% endfor %}
+</table>
+
+<a href="{% url 'employee_home' %}">Back to Home</a>
+</body>
+</html>

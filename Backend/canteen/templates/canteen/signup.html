@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Signup | Karmic Canteen</title>
+    {% load static %}
+   <link rel="stylesheet" href="{% static 'canteen/css/k.css' %}">
+</head>
+
+<body>
+    <h2>Signup</h2>
+
+    {% for message in messages %}
+        <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+
+    <form method="POST">
+        {% csrf_token %}
+        <label>Username:</label><br>
+        <input type="text" name="username" required><br><br>
+
+        <label>Email:</label><br>
+        <input type="email" name="email" required><br><br>
+
+        <label>Password:</label><br>
+        <input type="password" name="password" required><br><br>
+
+        <label>Confirm Password:</label><br>
+        <input type="password" name="confirm_password" required><br><br>
+
+        <label>Role:</label><br>
+        <select name="role" required>
+            <option value="employee">Employee</option>
+            <option value="admin">Admin</option>
+        </select><br><br>
+
+        <button type="submit">Create Account</button>
+    </form>
+
+    <p>Already have an account? <a href="{% url 'login' %}">Login here</a></p>
+</body>
+</html>

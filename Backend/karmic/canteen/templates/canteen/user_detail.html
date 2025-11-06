@@ -1,0 +1,39 @@
+<h2>User: {{ target.username }}</h2>
+<p>Email: {{ target.email }}</p>
+<p>Staff: {{ target.is_staff }}</p>
+<p>Superuser: {{ target.is_superuser }}</p>
+<p>Active: {{ target.is_active }}</p>
+
+<form method="post" action="{% url 'toggle_staff' target.id %}">
+  {% csrf_token %}
+  <button type="submit">{% if target.is_staff %}Revoke Staff{% else %}Make Staff{% endif %}</button>
+</form>
+
+<form method="post" action="{% url 'toggle_active' target.id %}">
+  {% csrf_token %}
+  <button type="submit">{% if target.is_active %}Deactivate{% else %}Activate{% endif %}</button>
+</form>
+
+<a href="{% url 'reset_password' target.id %}">Reset Password</a>
+
+<!-- Optional impersonate -->
+<form method="post" action="{% url 'impersonate' target.id %}">
+  {% csrf_token %}
+  <button type="submit">Impersonate</button>
+</form>
+
+<h3>Recent Meal Selections</h3>
+<table border="1">
+  <tr><th>Date</th><th>Menu Item</th><th>Opted?</th></tr>
+  {% for sel in selections %}
+  <tr>
+    <td>{{ sel.date }}</td>
+    <td>{{ sel.menu_item.name }}</td>
+    <td>{{ sel.opted }}</td>
+  </tr>
+  {% empty %}
+  <tr><td colspan="3">No recent selections</td></tr>
+  {% endfor %}
+</table>
+
+<a href="{% url 'user_list' %}">Back to Users</a>

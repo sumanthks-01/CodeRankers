@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Opted Users | {{ menu_item.name }}</title>
+  {% load static %}
+    <link rel="stylesheet" href="{% static 'canteen/css/manage.css' %}">
+</head>
+<body>
+  <h2>Employees Opted for {{ menu_item.name }} ({{ today }})</h2>
+
+  {% if opted_users %}
+  <table border="1" cellpadding="5">
+    <tr>
+      <th>#</th>
+      <th>Employee Username</th>
+      <th>Email</th>
+    </tr>
+
+    {% for entry in opted_users %}
+    <tr>
+      <td>{{ forloop.counter }}</td>
+      <td>{{ entry.user.username }}</td>
+      <td>{{ entry.user.email }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+  {% else %}
+    <p>No employees have opted for this meal today.</p>
+  {% endif %}
+
+  <br>
+  <a href="{% url 'generate_report' %}">Back to Report</a>
+</body>
+</html>

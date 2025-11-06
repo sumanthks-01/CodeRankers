@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login | Karmic Canteen</title>
+ {% load static %}
+   <link rel="stylesheet" href="{% static 'canteen/css/manage.css' %}">
+</head>
+<body>
+<h2>Manage Menu</h2>
+<a href="{% url 'add_menu_item' %}">Add New Menu Item</a>
+<table border="1">
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+        <th>Meal Type</th>
+        <th>Price</th>
+        <th>Available</th>
+        <th>Actions</th>
+    </tr>
+    {% for item in menu_items %}
+    <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.description }}</td>
+        <td>{{ item.get_meal_type_display }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ item.available }}</td>
+        <td>
+            <a href="{% url 'update_menu_item' item.pk %}">Edit</a> |
+            <a href="{% url 'delete_menu_item' item.pk %}">Delete</a>
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+<a href="{% url 'admin_dashboard' %}">Back to Dashboard</a>
+</body>
+</html>

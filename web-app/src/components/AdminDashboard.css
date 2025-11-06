@@ -1,0 +1,379 @@
+/* Admin Dashboard - Advanced Styles */
+
+:root {
+  --primary-dark: #1e293b;
+  --primary-accent: #dc2626;
+  --background: #0f172a;
+  --surface: #1e293b;
+  --text-primary: #f1f5f9;
+  --text-secondary: #cbd5e1;
+  --border: #334155;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.15);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.2);
+  --gradient-primary: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+  --gradient-accent: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
+  --success: #10b981;
+  --warning: #f59e0b;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+.admin-dashboard {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background-color: var(--background);
+  background: linear-gradient(45deg, #0f172a 0%, #1a1f3a 50%, #0f172a 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+  position: relative;
+  color: var(--text-primary);
+  padding: 40px 20px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.admin-dashboard::before {
+  content: "";
+  position: fixed;
+  top: -50%;
+  right: -50%;
+  width: 1000px;
+  height: 1000px;
+  background: radial-gradient(circle, rgba(220, 38, 38, 0.1) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatOrb1 20s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.admin-dashboard::after {
+  content: "";
+  position: fixed;
+  bottom: -30%;
+  left: -30%;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(30, 41, 59, 0.15) 0%, transparent 70%);
+  border-radius: 50%;
+  animation: floatOrb2 25s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes floatOrb1 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(-50px, -100px) scale(1.1);
+  }
+  50% {
+    transform: translate(-100px, 0) scale(0.9);
+  }
+  75% {
+    transform: translate(-50px, 100px) scale(1.05);
+  }
+}
+
+@keyframes floatOrb2 {
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(100px, 50px) scale(1.1);
+  }
+  50% {
+    transform: translate(150px, -50px) scale(0.95);
+  }
+  75% {
+    transform: translate(50px, -100px) scale(1.05);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(220, 38, 38, 0);
+  }
+}
+
+.admin-dashboard h2 {
+  color: var(--text-primary);
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  letter-spacing: -0.5px;
+  background: var(--gradient-accent);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: fadeIn 0.8s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.admin-dashboard h3 {
+  color: var(--text-secondary);
+  font-size: 20px;
+  font-weight: 600;
+  margin: 32px 0 20px 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+  z-index: 1;
+}
+
+.admin-menu {
+  list-style: none;
+  background-color: rgba(30, 41, 59, 0.8);
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  max-width: 500px;
+  overflow: hidden;
+  border: 1px solid rgba(52, 65, 84, 0.5);
+  backdrop-filter: blur(10px);
+  animation: slideInUp 0.6s ease-out;
+  position: relative;
+  z-index: 1;
+}
+
+.admin-menu li {
+  border-bottom: 1px solid rgba(52, 65, 84, 0.3);
+  animation: slideInUp 0.6s ease-out forwards;
+  position: relative;
+}
+
+.admin-menu li:nth-child(1) {
+  animation-delay: 0.1s;
+}
+.admin-menu li:nth-child(2) {
+  animation-delay: 0.2s;
+}
+.admin-menu li:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.admin-menu li:last-child {
+  border-bottom: none;
+}
+
+.admin-menu li::before {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 4px;
+  background: var(--gradient-accent);
+  transform: scaleY(0);
+  transform-origin: bottom;
+  transition: transform 0.3s ease;
+}
+
+.admin-menu a {
+  display: block;
+  position: relative;
+  padding: 16px 20px;
+  color: var(--text-primary);
+  background: var(--primary-dark);
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  font-size: 15px;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+}
+
+.admin-menu a:focus-visible {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 2px;
+}
+
+.admin-menu a:hover {
+  background: var(--gradient-accent);
+  color: #ffffff;
+  padding-left: 24px;
+  box-shadow: var(--shadow-xl);
+  transform: translateX(4px);
+}
+
+.admin-menu a:active {
+  transform: scale(0.98);
+  animation: pulse 0.6s ease-out;
+}
+
+.admin-menu a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--gradient-accent);
+  transition: width 0.3s ease;
+}
+
+.admin-menu a:hover::after {
+  width: 100%;
+}
+
+.logout-btn {
+  display: block;
+  position: relative;
+  padding: 16px 20px;
+  color: var(--text-primary);
+  background: var(--primary-dark);
+  border: none;
+  text-decoration: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  font-weight: 500;
+  font-size: 15px;
+  outline: 2px solid transparent;
+  outline-offset: -2px;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  font-family: inherit;
+}
+
+.logout-btn:focus-visible {
+  outline: 2px solid var(--primary-accent);
+  outline-offset: 2px;
+}
+
+.logout-btn:hover {
+  background: var(--gradient-accent);
+  color: #ffffff;
+  padding-left: 24px;
+  box-shadow: var(--shadow-xl);
+  transform: translateX(4px);
+}
+
+.logout-btn:active {
+  transform: scale(0.98);
+  animation: pulse 0.6s ease-out;
+}
+
+@media (max-width: 768px) {
+  .admin-dashboard {
+    padding: 20px 16px;
+  }
+
+  .admin-dashboard h2 {
+    font-size: 24px;
+  }
+
+  .admin-dashboard h3 {
+    font-size: 18px;
+    margin: 24px 0 16px 0;
+  }
+
+  .admin-menu {
+    max-width: 100%;
+  }
+
+  .admin-menu a,
+  .logout-btn {
+    padding: 14px 16px;
+    font-size: 14px;
+  }
+
+  .admin-menu a:hover,
+  .logout-btn:hover {
+    padding-left: 20px;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --background: #f8fafc;
+    --surface: #ffffff;
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --border: #e2e8f0;
+  }
+
+  .admin-dashboard {
+    background: linear-gradient(45deg, #f8fafc 0%, #e8ecf1 50%, #f8fafc 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 15s ease infinite;
+  }
+
+  .admin-dashboard::before {
+    background: radial-gradient(circle, rgba(220, 38, 38, 0.08) 0%, transparent 70%);
+  }
+
+  .admin-dashboard::after {
+    background: radial-gradient(circle, rgba(30, 41, 59, 0.08) 0%, transparent 70%);
+  }
+
+  .admin-menu {
+    background-color: rgba(255, 255, 255, 0.95);
+    border: 1px solid rgba(226, 232, 240, 0.8);
+  }
+
+  .admin-menu li {
+    border-bottom: 1px solid rgba(226, 232, 240, 0.5);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Delete User | Karmic Canteen</title>
+</head>
+<body>
+    <h2>Are you sure you want to delete {{ user_obj.username }}?</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'manage_users' %}">Cancel</a>
+    </form>
+</body>
+</html>

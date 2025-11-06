@@ -1,0 +1,435 @@
+/* ============================================
+   KARMIC CANTEEN - MENU MANAGEMENT STYLES
+   Advanced CSS with Animations & Hover Effects
+   ============================================ */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #2c3e50;
+  --accent-color: #e74c3c;
+  --success-color: #27ae60;
+  --warning-color: #f39c12;
+  --light-bg: #ecf0f1;
+  --dark-text: #2c3e50;
+  --light-text: #7f8c8d;
+  --border-color: #bdc3c7;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 4px 16px rgba(0, 0, 0, 0.15);
+  --shadow-heavy: 0 8px 32px rgba(0, 0, 0, 0.2);
+  --transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+body {
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  min-height: 100vh;
+  padding: 40px 20px;
+  color: var(--dark-text);
+  line-height: 1.6;
+}
+
+/* ============================================
+   HEADING STYLES
+   ============================================ */
+
+h2 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 30px;
+  color: var(--primary-color);
+  text-align: center;
+  position: relative;
+  padding-bottom: 20px;
+  letter-spacing: -0.5px;
+  animation: slideInDown 0.6s ease-out;
+}
+
+h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color), var(--warning-color));
+  border-radius: 2px;
+  box-shadow: 0 2px 8px rgba(231, 76, 60, 0.3);
+}
+
+/* ============================================
+   LINK STYLES
+   ============================================ */
+
+a {
+  color: var(--accent-color);
+  text-decoration: none;
+  font-weight: 600;
+  position: relative;
+  transition: var(--transition);
+  padding: 8px 0;
+}
+
+a::before {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--accent-color);
+  transition: width 0.3s ease-out;
+}
+
+a:hover::before {
+  width: 100%;
+}
+
+a:hover {
+  color: var(--primary-color);
+  transform: translateX(2px);
+}
+
+/* ============================================
+   BUTTON-LIKE LINK STYLES
+   ============================================ */
+
+.action-link {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+  transform: translateY(0);
+}
+
+.action-link:hover {
+  background-color: var(--accent-color);
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+  color: white;
+}
+
+.action-link:active {
+  transform: translateY(0);
+  box-shadow: var(--shadow-light);
+}
+
+/* ============================================
+   TOP SECTION - ADD NEW ITEM
+   ============================================ */
+
+body > a:first-of-type {
+  display: inline-block;
+  margin-bottom: 30px;
+  padding: 14px 28px;
+  background: linear-gradient(135deg, var(--success-color) 0%, #229954 100%);
+  color: white;
+  border-radius: 8px;
+  font-size: 1.05rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-medium);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+body > a:first-of-type::before {
+  background: rgba(255, 255, 255, 0.3);
+}
+
+body > a:first-of-type:hover {
+  box-shadow: var(--shadow-heavy);
+  transform: translateY(-3px);
+  color: white;
+}
+
+/* ============================================
+   TABLE STYLES
+   ============================================ */
+
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-medium);
+  margin-bottom: 30px;
+  animation: slideInUp 0.6s ease-out 0.3s both;
+}
+
+/* TABLE HEADER */
+thead {
+  background: linear-gradient(135deg, var(--primary-color) 0%, #34495e 100%);
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+th {
+  padding: 18px 20px;
+  text-align: left;
+  color: white;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  border-bottom: 3px solid var(--accent-color);
+  color: black;
+}
+
+/* TABLE BODY */
+tbody {
+  background: white;
+}
+
+td {
+  padding: 16px 20px;
+  border-bottom: 1px solid var(--light-bg);
+  color: var(--dark-text);
+  font-size: 0.95rem;
+}
+
+tr {
+  transition: var(--transition);
+  position: relative;
+}
+
+/* ROW HOVER EFFECT */
+tbody tr:hover {
+  background-color: #f8f9fa;
+  box-shadow: inset 0 0 0 1px rgba(231, 76, 60, 0.1);
+}
+
+tbody tr:hover td {
+  color: var(--primary-color);
+}
+
+tbody tr:active {
+  background-color: rgba(44, 62, 80, 0.05);
+}
+
+/* TABLE LINKS (EDIT/DELETE) */
+td a {
+  display: inline-block;
+  padding: 8px 16px;
+  margin: 0 4px;
+  background-color: var(--primary-color);
+  color: white;
+  border-radius: 5px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.15);
+  transition: var(--transition);
+  position: relative;
+  overflow: hidden;
+}
+
+td a::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.3);
+  width: 0;
+  transition: width 0.3s ease-out;
+}
+
+td a:hover::before {
+  width: 100%;
+}
+
+td a:hover {
+  background-color: var(--accent-color);
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-1px);
+  color: white;
+}
+
+td a:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+/* EDIT LINK STYLING */
+td a:nth-of-type(1) {
+  background-color: var(--success-color);
+}
+
+td a:nth-of-type(1):hover {
+  background-color: #229954;
+}
+
+/* DELETE LINK STYLING */
+td a:nth-of-type(2) {
+  background-color: var(--warning-color);
+}
+
+td a:nth-of-type(2):hover {
+  background-color: #e67e22;
+}
+
+/* BACK TO DASHBOARD BUTTON */
+body > a:last-of-type {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 14px 32px;
+  background-color: var(--light-bg);
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-light);
+  transition: var(--transition);
+  animation: fadeInUp 0.6s ease-out 0.4s both;
+}
+
+body > a:last-of-type::before {
+  background: var(--primary-color);
+  opacity: 0.1;
+}
+
+body > a:last-of-type:hover {
+  background-color: var(--primary-color);
+  color: white;
+  box-shadow: var(--shadow-medium);
+  transform: translateY(-2px);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+
+@media (max-width: 768px) {
+  body {
+    padding: 20px 15px;
+  }
+
+  h2 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+  }
+
+  th,
+  td {
+    padding: 12px 10px;
+    font-size: 0.9rem;
+  }
+
+  th {
+    font-size: 0.85rem;
+  }
+
+  table {
+    border-radius: 8px;
+  }
+
+  td a {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    margin: 3px 2px;
+  }
+
+  body > a:first-of-type,
+  body > a:last-of-type {
+    width: 100%;
+    text-align: center;
+    padding: 12px 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  th,
+  td {
+    padding: 8px 5px;
+    font-size: 0.8rem;
+  }
+
+  td a {
+    padding: 5px 8px;
+    font-size: 0.7rem;
+    margin: 2px 1px;
+  }
+}
+
+/* ============================================
+   PRINT STYLES
+   ============================================ */
+
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+
+  a {
+    color: var(--primary-color);
+  }
+
+  table {
+    box-shadow: none;
+    border: 1px solid var(--border-color);
+  }
+
+  td a {
+    color: var(--primary-color);
+    border: 1px solid var(--border-color);
+    background: white !important;
+  }
+}

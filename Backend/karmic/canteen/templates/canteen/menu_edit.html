@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login | Karmic Canteen</title>
+  {% load static %}
+   <link rel="stylesheet" href="{% static 'canteen/css/add.css' %}">
+</head>
+<body>
+<h2>Edit Menu Item</h2>
+<form method="post">
+  {% csrf_token %}
+  <label>Name:</label><input type="text" name="name" value="{{ item.name }}"><br>
+  <label>Meal Type:</label><input type="text" name="meal_type" value="{{ item.meal_type }}"><br>
+  <label>Price:</label><input type="number" name="price" value="{{ item.price }}"><br>
+  <label>Available:</label><input type="checkbox" name="available" {% if item.available %}checked{% endif %}><br>
+  <button type="submit">Save</button>
+</form>
+
+<a href="{% url 'menu_list_all' %}">Back to All Menus</a>
+</body>
+</html>
