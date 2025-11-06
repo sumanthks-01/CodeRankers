@@ -128,6 +128,12 @@ const EmployeeHome: React.FC = () => {
       </table>
 
       <div className="actions">
+        <button 
+          onClick={() => window.location.href = '/work-status'} 
+          className="work-status-btn"
+        >
+          Set Work Status
+        </button>
         <button onClick={logout} className="logout-btn">Logout</button>
       </div>
     </div>

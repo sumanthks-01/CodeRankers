@@ -144,6 +144,30 @@
     margin-top: 30px;
 }
 
+.work-status-btn {
+    background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+    color: white;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    letter-spacing: 0.3px;
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+    margin-right: 15px;
+}
+
+.work-status-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5);
+}
+
+.work-status-btn:active {
+    transform: translateY(-1px);
+}
+
 .logout-btn {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     color: white;

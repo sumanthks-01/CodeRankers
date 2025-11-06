@@ -1,7 +1,27 @@
 from django.db import models
+from django.contrib.auth.models import User
+from datetime import date
 
 # Create your models here.
 
+class WorkStatus(models.Model):
+    STATUS_CHOICES = [
+        ('office', 'Working from Office'),
+        ('wfh', 'Work from Home'),
+        ('sick', 'Sick Leave'),
+        ('leave', 'On Leave'),
+    ]
+    
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='office')
+    date = models.DateField(default=date.today)
+    reason = models.CharField(max_length=200, blank=True)
+    
+    class Meta:
+        unique_together = ['user', 'date']
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.get_status_display()} ({self.date})"
 
 class Menu(models.Model):
     MEAL_CHOICES = [
@@ -18,8 +38,6 @@ class Menu(models.Model):
 
     def __str__(self):
         return f"{self.name} ({self.meal_type})"
-
-from django.contrib.auth.models import User
 
 class MealSelection(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -9,11 +9,15 @@ A comprehensive canteen management system with both web and mobile applications,
 - **Menu Selection**: View daily menu (Breakfast, Lunch, Evening Snacks)
 - **Meal Opt-in/Out**: Select or skip meals with real-time updates
 - **Selection History**: View past meal selections
+- **Work Status Management**: Set work location (Office/WFH/Sick/Leave)
+- **Smart Notifications**: Only receive notifications when working from office
 - **Cross-platform**: Available on web and mobile
 
 ### 👨💼 Admin Features
 - **Menu Management**: Add, edit, delete menu items
 - **Daily Reports**: View meal selection statistics
+- **Work Status Reports**: Monitor employee work locations
+- **Smart Notification Control**: View who receives notifications
 - **User Management**: (Super admin) Manage user accounts
 - **Real-time Analytics**: Track meal preferences and counts
 
@@ -99,12 +103,15 @@ CodeRankers/
 - `GET /api/menu/tomorrow/` - Get available menu
 - `GET/POST /api/employee/selections/` - Manage meal selections
 - `GET /api/employee/my-selections/` - View selection history
+- `GET/POST /api/employee/work-status/` - Manage work status
 
 ### Admin
 - `GET /api/admin/menu/` - List all menu items
 - `POST /api/admin/menu/add/` - Add menu item
 - `PUT/DELETE /api/admin/menu/{id}/` - Update/delete menu item
 - `GET /api/admin/reports/` - Daily reports
+- `GET /api/admin/work-status-report/` - Work status reports
+- `POST /api/admin/demo-notification/` - Test notification system
 - `GET /api/admin/users/` - User management (Super admin)
 
 ## Database Schema
@@ -113,6 +120,7 @@ CodeRankers/
 - **User** - Django's built-in user model with roles
 - **Menu** - Menu items with meal types and pricing
 - **MealSelection** - User meal selections with dates
+- **WorkStatus** - Employee work location status (Office/WFH/Sick/Leave)
 
 ## Features Comparison
 
@@ -120,9 +128,12 @@ CodeRankers/
 |---------|---------|------------|
 | Authentication | ✅ | ✅ |
 | Menu Selection | ✅ | ✅ |
+| Work Status Management | ✅ | ✅ |
+| Smart Notifications | ✅ | ✅ |
 | Admin Dashboard | ✅ | ✅ |
 | Menu Management | ✅ | ✅ |
 | Reports | ✅ | ✅ |
+| Work Status Reports | ✅ | ✅ |
 | Selection History | ✅ | ✅ |
 | Push Notifications | ❌ | ✅ |
 | Offline Support | ❌ | ✅ |

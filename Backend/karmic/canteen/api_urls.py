@@ -21,4 +21,9 @@ urlpatterns = [
     
     # Push notifications
     path('notifications/register-token/', api_views.register_push_token, name='api_register_push_token'),
+    
+    # Work Status endpoints
+    path('employee/work-status/', api_views.work_status, name='api_work_status'),
+    path('admin/work-status-report/', api_views.admin_work_status_report, name='api_admin_work_status_report'),
+    path('admin/demo-notification/', api_views.demo_notification_test, name='api_demo_notification'),
 ]

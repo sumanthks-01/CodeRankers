@@ -7,8 +7,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.models import User
 from django.db.models import Count, Q
 from datetime import date, timedelta
-from .models import Menu, MealSelection
-from .serializers import MenuSerializer, MealSelectionSerializer, UserSerializer
+from .models import Menu, MealSelection, WorkStatus
+from .serializers import MenuSerializer, MealSelectionSerializer, UserSerializer, WorkStatusSerializer
 from .push_notifications import register_device_token
 
 @api_view(['POST'])
@@ -219,3 +219,77 @@ def register_push_token(request):
         register_device_token(request.user.id, token)
         return Response({'message': 'Token registered successfully'})
     return Response({'error': 'Token required'}, status=400)
+
+# Work Status APIs
+@api_view(['GET', 'POST'])
+@permission_classes([IsAuthenticated])
+def work_status(request):
+    if request.method == 'GET':
+        today = date.today()
+        try:
+            status = WorkStatus.objects.get(user=request.user, date=today)
+            serializer = WorkStatusSerializer(status)
+            return Response({'status': serializer.data})
+        except WorkStatus.DoesNotExist:
+            return Response({'status': {'status': 'office', 'status_display': 'Working from Office', 'date': today, 'reason': ''}})
+    
+    elif request.method == 'POST':
+        status_data = request.data.get('status')
+        reason = request.data.get('reason', '')
+        status_date = request.data.get('date', str(date.today()))
+        
+        work_status, created = WorkStatus.objects.update_or_create(
+            user=request.user,
+            date=status_date,
+            defaults={'status': status_data, 'reason': reason}
+        )
+        
+        serializer = WorkStatusSerializer(work_status)
+        return Response({'status': serializer.data, 'message': 'Work status updated successfully'})
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def admin_work_status_report(request):
+    if not (request.user.is_staff or request.user.is_superuser):
+        return Response({'error': 'Permission denied'}, status=403)
+    
+    today = date.today()
+    work_statuses = WorkStatus.objects.filter(date=today).select_related('user')
+    
+    status_report = {
+        'office': [],
+        'wfh': [],
+        'sick': [],
+        'leave': []
+    }
+    
+    for ws in work_statuses:
+        status_report[ws.status].append({
+            'username': ws.user.username,
+            'email': ws.user.email,
+            'reason': ws.reason
+        })
+    
+    # Count users with no status (default to office)
+    users_with_no_status = User.objects.exclude(workstatus__date=today).count()
+    
+    return Response({
+        'date': today,
+        'status_report': status_report,
+        'users_with_no_status': users_with_no_status,
+        'total_onsite': len(status_report['office']) + users_with_no_status
+    })
+
+@api_view(['POST'])
+@permission_classes([IsAuthenticated])
+def demo_notification_test(request):
+    if not (request.user.is_staff or request.user.is_superuser):
+        return Response({'error': 'Permission denied'}, status=403)
+    
+    from .notification_service import demo_notification_feature
+    
+    result = demo_notification_feature()
+    return Response({
+        'message': 'Demo notification test completed',
+        'results': result
+    })

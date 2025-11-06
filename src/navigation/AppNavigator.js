@@ -10,10 +10,12 @@ import LoginScreen from '../screens/auth/LoginScreen';
 import SignupScreen from '../screens/auth/SignupScreen';
 import MenuScreen from '../screens/employee/MenuScreen';
 import MySelectionsScreen from '../screens/employee/MySelectionsScreen';
+import WorkStatusScreen from '../screens/employee/WorkStatusScreen';
 import NotificationSettings from '../components/NotificationSettings';
 import AdminDashboard from '../screens/admin/AdminDashboard';
 import MenuManagement from '../screens/admin/MenuManagement';
 import ReportsScreen from '../screens/admin/ReportsScreen';
+import WorkStatusReport from '../screens/admin/WorkStatusReport';
 import UserManagement from '../screens/admin/UserManagement';
 import SuperUserProfile from '../screens/admin/SuperUserProfile';
 
@@ -29,6 +31,8 @@ const EmployeeTabNavigator = () => (
           iconName = focused ? 'restaurant' : 'restaurant-outline';
         } else if (route.name === 'My Selections') {
           iconName = focused ? 'list' : 'list-outline';
+        } else if (route.name === 'Work Status') {
+          iconName = focused ? 'business' : 'business-outline';
         } else if (route.name === 'Notifications') {
           iconName = focused ? 'notifications' : 'notifications-outline';
         }
@@ -41,6 +45,7 @@ const EmployeeTabNavigator = () => (
   >
     <Tab.Screen name="Menu" component={MenuScreen} />
     <Tab.Screen name="My Selections" component={MySelectionsScreen} />
+    <Tab.Screen name="Work Status" component={WorkStatusScreen} />
     <Tab.Screen name="Notifications" component={NotificationSettings} />
   </Tab.Navigator>
 );
@@ -50,6 +55,7 @@ const AdminStackNavigator = () => (
     <Stack.Screen name="AdminDashboard" component={AdminDashboard} />
     <Stack.Screen name="MenuManagement" component={MenuManagement} />
     <Stack.Screen name="ReportsScreen" component={ReportsScreen} />
+    <Stack.Screen name="WorkStatusReport" component={WorkStatusReport} />
     <Stack.Screen name="UserManagement" component={UserManagement} />
     <Stack.Screen name="SuperUserProfile" component={SuperUserProfile} />
   </Stack.Navigator>

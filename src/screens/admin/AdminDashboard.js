@@ -32,6 +32,13 @@ const AdminDashboard = ({ navigation }) => {
       color: '#764ba2',
       onPress: () => navigation.navigate('ReportsScreen'),
     },
+    {
+      title: 'Work Status Report',
+      subtitle: 'View employee work locations and notification status',
+      icon: 'business-outline',
+      color: '#10b981',
+      onPress: () => navigation.navigate('WorkStatusReport'),
+    },
     ...(user?.is_superuser ? [
       {
         title: 'SuperUser Profile',
